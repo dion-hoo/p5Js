@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border: 1px dashed deeppink;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+  </head>
+  <body>
+    <script>
+      let x = 100;
+      let y = 100;
+      let radius = 100;
+      function setup() {
+        createCanvas(600, 500);
+
+        noLoop();
+      }
+
+      function draw() {
+        ellipse(x, y, radius);
+      }
+
+      function mouseClicked() {
+        const px = abs(mouseX - x);
+        const py = abs(mouseY - y);
+        const pz = sqrt(pow(px, 2) + pow(py, 2));
+
+        const dx = x + cos(1) * (radius / 2);
+        const dy = y + sin(1) * (radius / 2);
+
+        const distance = sqrt(pow(dx - x, 2) + pow(dy - y, 2));
+
+        console.log(`agree: 1, dx : ${dx}, dy : ${dy}, distance : ${distance}`);
+      }
+
+      function windowResized() {
+        resizeCanvas(window.innerWidth - 10, window.innerHeight - 150);
+      }
+    </script>
+  </body>
+</html>

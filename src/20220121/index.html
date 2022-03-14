@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border: 1px dashed deeppink;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script>
+      let img;
+      let imgMask;
+      let easeing = 0.05;
+      const pos = { x: 0, y: 0 };
+
+      function preload() {
+        img = loadImage("egg1.png");
+        imgMask = loadImage("mask.png");
+      }
+
+      function setup() {
+        createCanvas(windowWidth, windowHeight);
+
+        img.mask(imgMask);
+        imageMode(CENTER);
+      }
+
+      function draw() {
+        background(0);
+
+        image(img, width / 2, height / 2);
+
+        pos.x = pos.x + (mouseX - pos.x) * easeing;
+        pos.y = pos.y + (mouseY - pos.y) * easeing;
+
+        image(img, pos.x, pos.y);
+      }
+    </script>
+  </head>
+</html>
