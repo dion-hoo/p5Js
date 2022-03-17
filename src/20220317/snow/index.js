@@ -18,7 +18,6 @@ class Wind {
         const strength = (G * this.mass * object.mass) / sqrt(distance);
 
         force.normalize();
-        force.mult(-1);
         force.mult(strength);
 
         return force;
